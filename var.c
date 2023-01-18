@@ -1770,8 +1770,8 @@ ParseModifier(VarParser *vp, char startc, Var *v, Boolean *freeResult)
 						newStr = estrdup("");
 					}
 
-					if (error)
-						Error(error, value);
+					/*if (error)
+						Error(error, value);*/
 					vp->ptr += 2;
 				} else
 #endif
