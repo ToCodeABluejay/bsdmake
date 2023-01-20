@@ -48,6 +48,6 @@ typedef struct ProcStuff {
 	pid_t	child_pid;
 } ProcStuff;
 
-void Proc_Exec(const ProcStuff *) __dead2;
+void Proc_Exec(const ProcStuff *); //__dead2;
 
 #endif /* proc_h_458845848 */

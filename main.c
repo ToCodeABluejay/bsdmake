@@ -46,7 +46,7 @@ static char copyright[] =
 #endif
 #endif /* not lint */
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/main.c,v 1.159 2005/12/05 14:22:12 ru Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/main.c,v 1.159 2005/12/05 14:22:12 ru Exp $");
 
 /*
  * main.c
@@ -63,7 +63,11 @@ __FBSDID("$FreeBSD: src/usr.bin/make/main.c,v 1.159 2005/12/05 14:22:12 ru Exp $
 
 #include <sys/param.h>
 #include <sys/stat.h>
+#ifdef linux
+#include <linux/sysctl.h>
+#else
 #include <sys/sysctl.h>
+#endif /* Linux */
 #include <sys/time.h>
 #include <sys/queue.h>
 #include <sys/resource.h>
@@ -367,7 +371,7 @@ MainParseArgs(int argc, char **argv)
 
 rearg:
 	optind = 1;	/* since we're called more than once */
-	optreset = 1;
+	//optreset = 1;
 #define OPTFLAGS "ABC:D:E:I:PSV:Xd:ef:ij:km:nqrstvx:"
 	for (;;) {
 		if ((optind < argc) && strcmp(argv[optind], "--") == 0) {
@@ -659,11 +663,21 @@ check_make_level(void)
 	int	level = (value == NULL) ? 0 : atoi(value);
 
 	if (level < 0) {
+#ifdef linux
+		errx(2, "Invalid value for recursion level (%d).",
+		    level);
+#else
 		errc(2, EAGAIN, "Invalid value for recursion level (%d).",
 		    level);
+#endif
 	} else if (level > MKLVL_MAXVAL) {
+#ifdef linux
+		errx(2, "Max recursion level (%d) exceeded.",
+		    MKLVL_MAXVAL);
+#else
 		errc(2, EAGAIN, "Max recursion level (%d) exceeded.",
 		    MKLVL_MAXVAL);
+#endif
 	} else {
 		char new_value[32];
 		sprintf(new_value, "%d", level + 1);
@@ -764,7 +778,7 @@ main(int argc, char **argv)
 	 * make binary on old FreeBSD/pc98 systems, and have the
 	 * MACHINE variable set properly.
 	 */
-	if ((machine = getenv("MACHINE")) == NULL) {
+	/*if ((machine = getenv("MACHINE")) == NULL) {
 		int	ispc98;
 		size_t	len;
 
@@ -773,7 +787,7 @@ main(int argc, char **argv)
 			if (ispc98)
 				machine = "pc98";
 		}
-	}
+	}*/
 
 	/*
 	 * Get the name of this type of MACHINE from utsname

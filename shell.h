@@ -47,6 +47,8 @@
 #include "str.h"
 #include "util.h"
 
+static const char *DEFSHELLNAME = "bash";
+
 /**
  * Shell Specifications:
  *

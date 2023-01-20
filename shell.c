@@ -39,7 +39,7 @@
  */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/shell.c,v 1.1 2005/05/24 15:30:03 harti Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/shell.c,v 1.1 2005/05/24 15:30:03 harti Exp $");
 
 #include <sys/queue.h>
 #include <stdio.h>
@@ -121,7 +121,7 @@ struct Shell *commandShell;
  */
 static struct Shells shells = TAILQ_HEAD_INITIALIZER(shells);
 
-void ShellDump(const struct Shell *) __unused;
+void ShellDump(const struct Shell *); //__unused;
 
 /**
  * Helper function for sorting the builtin list alphabetically.

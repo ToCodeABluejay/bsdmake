@@ -40,7 +40,7 @@
  */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/var.c,v 1.162 2006/04/08 07:02:39 fjoe Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/var.c,v 1.162 2006/04/08 07:02:39 fjoe Exp $");
 
 /**
  * var.c --
@@ -248,7 +248,7 @@ VarDestroy(Var *v, Boolean f)
  *	The trimmed word is added to the buffer.
  */
 static Boolean
-VarHead(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
+VarHead(const char *word, Boolean addSpace, Buffer *buf, void *dummy) //__unused
 {
 	char *slash;
 
@@ -283,7 +283,7 @@ VarHead(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
  *	The trimmed word is added to the buffer.
  */
 static Boolean
-VarTail(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
+VarTail(const char *word, Boolean addSpace, Buffer *buf, void *dummy) //__unused
 {
 	const char *slash;
 
@@ -312,7 +312,7 @@ VarTail(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
  *	The suffix from the word is placed in the buffer.
  */
 static Boolean
-VarSuffix(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
+VarSuffix(const char *word, Boolean addSpace, Buffer *buf, void *dummy) //__unused
 {
 	const char *dot;
 
@@ -340,7 +340,7 @@ VarSuffix(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
  *	The trimmed word is added to the buffer.
  */
 static Boolean
-VarRoot(const char *word, Boolean addSpace, Buffer *buf, void *dummy __unused)
+VarRoot(const char *word, Boolean addSpace, Buffer *buf, void *dummy) //__unused
 {
 	char *dot;
 

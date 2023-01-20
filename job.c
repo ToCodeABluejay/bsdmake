@@ -40,7 +40,7 @@
  */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/job.c,v 1.124 2005/10/09 06:36:51 scottl Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/job.c,v 1.124 2005/10/09 06:36:51 scottl Exp $");
 
 #ifndef OLD_JOKE
 #define	OLD_JOKE 0
@@ -123,7 +123,9 @@ __FBSDID("$FreeBSD: src/usr.bin/make/job.c,v 1.124 2005/10/09 06:36:51 scottl Ex
 #include <stdlib.h>
 #include <unistd.h>
 #include <utime.h>
-
+#ifndef BSD
+#include <bsd/stdlib.h>
+#endif /* non-BSD */
 #include "arch.h"
 #include "buf.h"
 #include "config.h"
@@ -477,7 +479,7 @@ mkfifotemp(char *template)
 }
 
 static void
-catch_child(int sig __unused)
+catch_child(int sig) //__unused
 {
 }
 

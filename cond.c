@@ -40,7 +40,7 @@
  */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/cond.c,v 1.54 2005/05/25 16:06:14 harti Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/cond.c,v 1.54 2005/05/25 16:06:14 harti Exp $");
 
 /*
  * Functions to handle conditionals in a makefile.
@@ -1115,7 +1115,7 @@ Cond_If(char *line, int code, int lineno)
  *	Handle .else statement.
  */
 void
-Cond_Else(char *line __unused, int code __unused, int lineno __unused)
+Cond_Else(char *line, int code, int lineno)	//__unused
 {
 
 	while (isspace((u_char)*line))
@@ -1156,7 +1156,7 @@ Cond_Else(char *line __unused, int code __unused, int lineno __unused)
  *	Handle .endif statement.
  */
 void
-Cond_Endif(char *line __unused, int code __unused, int lineno __unused)
+Cond_Endif(char *line, int code, int lineno) //__unused
 {
 
 	while (isspace((u_char)*line))

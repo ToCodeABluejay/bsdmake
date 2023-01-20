@@ -39,7 +39,7 @@
  */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/parse.c,v 1.110 2005/10/17 15:56:26 ru Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/parse.c,v 1.110 2005/10/17 15:56:26 ru Exp $");
 
 /*-
  * parse.c --
@@ -237,13 +237,6 @@ static const struct keyword {
 	/* KEYWORD-END-TAG */
 };
 #define	NKEYWORDS	(sizeof(parseKeywords) / sizeof(parseKeywords[0]))
-
-static void parse_include(char *, int, int);
-static void parse_sinclude(char *, int, int);
-static void parse_message(char *, int, int);
-static void parse_undef(char *, int, int);
-static void parse_for(char *, int, int);
-static void parse_endfor(char *, int, int);
 
 static const struct directive {
 	const char	*name;
@@ -2198,13 +2191,13 @@ xparse_include(char *file, int sinclude)
 }
 
 static void
-parse_include(char *file, int code __unused, int lineno __unused)
+parse_include(char *file, int code, int lineno) //__unused __unused)
 {
 	xparse_include(file, 0);
 }
 
 static void
-parse_sinclude(char *file, int code __unused, int lineno __unused)
+parse_sinclude(char *file, int code, int lineno) //__unused __unused)
 {
 	xparse_include(file, 1);
 }
@@ -2218,7 +2211,7 @@ parse_sinclude(char *file, int code __unused, int lineno __unused)
  *	a warning if the directive is malformed.
  */
 static void
-parse_message(char *line, int iserror, int lineno __unused)
+parse_message(char *line, int iserror, int lineno)
 {
 
 	if (!isspace((u_char)*line)) {
@@ -2245,7 +2238,7 @@ parse_message(char *line, int iserror, int lineno __unused)
  *	Parse an .undef directive.
  */
 static void
-parse_undef(char *line, int code __unused, int lineno __unused)
+parse_undef(char *line, int code, int lineno)
 {
 	char *cp;
 
@@ -2267,7 +2260,7 @@ parse_undef(char *line, int code __unused, int lineno __unused)
  *	Parse a .for directive.
  */
 static void
-parse_for(char *line, int code __unused, int lineno)
+parse_for(char *line, int code, int lineno)
 {
 
 	if (!For_For(line)) {
@@ -2299,7 +2292,7 @@ parse_for(char *line, int code __unused, int lineno)
  *	Parse endfor. This may only happen if there was no matching .for.
  */
 static void
-parse_endfor(char *line __unused, int code __unused, int lineno __unused)
+parse_endfor(char *line, int code, int lineno)
 {
 
 	Parse_Error(PARSE_FATAL, "for-less endfor");

@@ -53,21 +53,21 @@
 /*
  * Structure of a list node.
  */
-struct LstNode {
+typedef struct LstNode {
 	struct LstNode	*prevPtr;   /* previous element in list */
 	struct LstNode	*nextPtr;   /* next in list */
 	void		*datum;	    /* datum associated with this element */
-};
-typedef	struct	LstNode	LstNode;
+} LstNode;
+//	struct
 
 /*
  * The list itself
  */
-struct Lst {
+typedef	struct Lst {
 	LstNode  	*firstPtr; /* first node in list */
 	LstNode  	*lastPtr;  /* last node in list */
-};
-typedef	struct	Lst Lst;
+}	Lst;
+//struct;
 
 typedef	void *DuplicateProc(void *);
 typedef	void FreeProc(void *);

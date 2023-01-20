@@ -83,4 +83,11 @@ void Parse_File(const char *, FILE *);
 void Parse_FromString(char *, int);
 void Parse_MainName(struct Lst *);
 
+
+static void parse_include(char *, int, int);
+static void parse_sinclude(char *, int, int);
+static void parse_message(char *, int, int);
+static void parse_undef(char *, int, int);
+static void parse_for(char *, int, int);
+static void parse_endfor(char *, int, int);
 #endif /* parse_h_470eeb9a */

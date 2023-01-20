@@ -40,7 +40,7 @@
  */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: src/usr.bin/make/util.c,v 1.19 2005/05/13 13:47:41 harti Exp $");
+//__FBSDID("$FreeBSD: src/usr.bin/make/util.c,v 1.19 2005/05/13 13:47:41 harti Exp $");
 
 /*-
  * util.c --
@@ -61,7 +61,7 @@ __FBSDID("$FreeBSD: src/usr.bin/make/util.c,v 1.19 2005/05/13 13:47:41 harti Exp
 #include "targ.h"
 #include "util.h"
 
-static void enomem(void) __dead2;
+static void enomem(void); //__dead2;
 
 /*-
  * Debug --

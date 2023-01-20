@@ -44,6 +44,7 @@
 #include <sys/types.h>
 #include <stdio.h>
 
+
 /*
  * A boolean type is defined as an integer, not an enum. This allows a
  * boolean argument to be an expression that isn't strictly 0 or 1 valued.
@@ -103,10 +104,10 @@ do {						\
 void Debug(const char *, ...);
 void DebugM(const char *, ...);
 void Error(const char *, ...);
-void Fatal(const char *, ...) __dead2;
-void Punt(const char *, ...) __dead2;
-void DieHorribly(void) __dead2;
-void Finish(int) __dead2;
+void Fatal(const char *, ...); //__dead2;
+void Punt(const char *, ...); //__dead2;
+void DieHorribly(void); //__dead2;
+void Finish(int); //__dead2;
 char *estrdup(const char *);
 void *emalloc(size_t);
 void *erealloc(void *, size_t);
